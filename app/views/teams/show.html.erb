@@ -1,0 +1,98 @@
+<div class="col-lg-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Team Details</h1>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <p id="notice"><%= notice %></p>
+        </div>
+
+        <div class="col-lg-12">
+          <strong>Name:</strong>
+          <p><%= @team.name %></p>
+        </div>
+        <div class="col-lg-12">
+          <strong>Description:</strong>
+          <p><%= @team.department %></p>
+        </div>
+        <div>
+        <div class="col-lg-12">
+          <strong>Created date:</strong>
+          <p><%= @team.created_at.strftime("%F") %></p>
+        </div>
+        <div class="col-lg-12">
+          <strong>Created by:</strong>
+          <p><%= full_name(User.find(@team.created_by_id)) %></p>
+        </div>
+        <div>
+          <strong class="col-lg-10">
+            Team members (<%= @team.users.count%>)
+          </strong>
+          <div class="col-lg-2">
+            <%= link_to 'Add Member', add_user_team_path(@team)  ,:class=>"btn btn-xs btn-primary",:'data-toggle'=>"modal" ,:'data-target'=>"#myModal"%>
+          </div>
+          <% @team.users.each do |user| %>
+            <% if user.id == @team.created_by_id %>
+              <p class="col-lg-10">
+                <%= link_to full_name(user) + " ( " + user.email+ " ) ", user_path(user) %>
+              </p>
+            <% end %>
+          <%end%>
+          <% @team.users.each do |user| %>
+            <% if user.id != @team.created_by_id %>
+              <p class="col-lg-10">
+                <%= link_to full_name(user) + " ( " + user.email+ " ) ", user_path(user) %>
+              </p>
+              <div class="col-lg-2">
+                <p>
+                  <%= link_to 'Remove Member', remove_user_team_path(@team,:user_id => user.id) , data: { confirm: 'Are you sure?' }  ,:class=>"btn btn-xs btn-danger"%>
+                </p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      	<%= form_tag add_user_team_path(@team)  do %>
+				  <%= text_field_tag :email %>
+				  <%= submit_tag %>
+				<% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <p id="notice"><%#= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%#= @team.name %>
+</p>
+<p>
+  <strong>Team members (<%#= @team.users.count%>):</strong><br>
+  <%# @team.users.each do |user| %>
+  	<%#= full_name(user) %>
+  <%# end %>
+</p>
+
+<%#= link_to 'Edit', edit_team_path(@team) %> |
+<%#= link_to 'Back', teams_path %>
+ -->

@@ -1,0 +1,125 @@
+<div class="col-lg-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    	<div class="row">
+    		<div class="col-lg-12">
+      		<h1>Project Details |
+          <% if can? :update, @project %> 
+            <%= link_to 'Edit', edit_project_path(@project) %></td>
+          <% end %>
+          </h1>
+    		</div>
+    	</div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <p id="notice"><%= notice %></p>
+        </div>
+        <div class="col-lg-12">
+          <strong>Name:</strong>
+          <p><%= @project.name %></p>
+        </div>
+        <div class="col-lg-12">
+          <strong>Description:</strong>
+          <p><%= @project.description %></p>
+        </div>
+        <div>
+        <div class="col-lg-12">
+          <strong>Start date:</strong>
+          <p><%= @project.created_at.strftime("%F") %></p>
+        </div>
+        <div>
+          <strong class="col-lg-10">
+            Team members (<%= @project.users.count%>)
+          </strong>
+          <div class="col-lg-2">
+            <% unless @project.created_by_id == current_user.id && @project.name == "persnal_project" %>
+              <% if can? :update, @project %> 
+                <%= link_to 'Add Member', add_user_project_path(@project)  ,:class=>"btn  btn-xs btn-primary",:'data-toggle'=>"modal" ,:'data-target'=>"#myModal"%>
+              <%end%>
+            <% end %>
+          </div>
+          <% @project.users.each do |user| %>
+            <% if user.id == @project.created_by_id %>
+              <p class="col-lg-10">
+                <%= link_to full_name(user) + " ( " + user.email+ " ) ", user_path(user) %>
+              </p>
+            <% end %>
+          <%end%>
+          <% @project.users.each do |user| %>
+            <% if user.id != @project.created_by_id %>
+              <p class="col-lg-10">
+                <%#= @project.manager_id == user.id ? " Manager :"  : "" %>
+                <%= link_to full_name(user) + " ( " + user.email+ " ) ", user_path(user) %>
+              </p>
+              <div class="col-lg-2">
+                <% unless @project.created_by_id == current_user.id && @project.name == "persnal_project" %>
+                  <% if can? :update, @project %>
+                    <p>
+                      <%= link_to 'Remove Member', remove_user_project_path(@project,:user_id => user.id) , data: { confirm: 'Are you sure?' }  ,:class=>"btn btn-xs btn-danger"%>
+                    </p>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <strong class="col-lg-10" style="margin: 0 0 10px 0;">
+            Task List (<%= @project.tasks.count%>)
+          </strong>
+          <div class="col-lg-2">
+            <% if can? :update, @project %> 
+              <%= link_to 'Add task', new_project_task_path(@project)  ,:class=>"btn  btn-xs btn-primary"%>
+            <% end %>
+          </div>
+          <% @project.tasks.each do |task| %>
+            <p class="col-lg-6">
+              <%= link_to task.name, task_path(task) %>
+            </p>
+            <p class="col-lg-2 col-lg-offset-4 ">
+              <% if can? :update, @project %> 
+                <%= link_to 'Remove task', project_task_path(@project,task)  ,:class=>"btn btn-xs btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      	<%= form_tag add_user_project_path(@project)  do %>
+		      <%= text_field_tag :email %>
+		      <%= submit_tag %>
+		    <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<p id="notice"><%#= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%#= @project.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%#= @project.description %>
+</p>
+ 
+<%#= link_to 'Edit', edit_project_path(@project) %> |
+<%#= link_to 'Back', projects_path %>
+ -->

@@ -1,0 +1,95 @@
+class CommentsController < ApplicationController
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  # GET /comments
+  # GET /comments.json
+  def index
+    @comments = Comment.all
+  end
+
+  # GET /comments/1
+  # GET /comments/1.json
+  def show
+  end
+
+  # GET /comments/new
+  def new
+    @comment = Comment.new
+  end
+
+  # GET /comments/1/edit
+  def edit
+    @task = Task.find(params[:task_id])
+  end
+
+  # POST /comments
+  # POST /comments.json
+  def create
+    @task = Task.find(params[:task_id])
+    @comment = @task.comments.build(comment_params)
+    @comment.user = current_user
+    @task_created_by = User.find(@task.project.created_by_id)
+    @task_assign_to = User.find(@task.assign_task_user_id)
+    @project = @task.project
+
+    logger.info("-------#{@project.inspect}------")
+    # @comment = Comment.new(comment_params)
+
+    respond_to do |format|
+      if @comment.save
+        
+        if current_user.is_turn_on == true
+          CommentMailer.post_comment(@task_created_by,@task,@project,@comment).deliver_later
+          
+          CommentMailer.post_comment(@task_assign_to ,@task,@project,@comment).deliver_later
+        end
+        
+        format.html { redirect_to task_path(@task), notice: 'Comment was successfully created.' }
+        format.json { render :show, status: :created, location: @comment }
+      else
+        format.html { render :new }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /comments/1
+  # PATCH/PUT /comments/1.json
+  def update
+    @task = Task.find(params[:task_id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to task_path(@task), notice: 'Comment was successfully updated.' }
+        # format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @comment }
+      else
+        format.html { render :edit }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /comments/1
+  # DELETE /comments/1.json
+  def destroy
+    @task = Task.find(params[:task_id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to task_path(@task), notice: 'Comment was successfully destroyed.' }
+      # format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def comment_params
+      params.require(:comment).permit(:body)
+    end
+end

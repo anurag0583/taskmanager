@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Task Manager</h1>
+    <p>
+      <%= link_to @user.email.split("@")[0] , user_url(@user) %> added comment on "<%= link_to @task.name , task_url(@task) %>  " Task from this <b><%= link_to @project.name , project_url(@task) %></b> project.
+      <br>
+      <b>Comment :</b> <%= @comment.body %>
+    </p>
+
+    <p>Thanks for joining and have a great day!</p> <p>Turn it <%= link_to 'off', torn_off_email_user_url(@user) %>.</p>
+  </body>
+</html>

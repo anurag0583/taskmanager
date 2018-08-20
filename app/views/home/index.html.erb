@@ -1,0 +1,166 @@
+<% if user_signed_in? %>
+	<div class="col-lg-12">
+	    <h1 class="page-header">Dashboard</h1>
+	</div>	
+  <div class="col-lg-4 col-md-4">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+              <div class="row">
+                  <div class="col-xs-3">
+                      <i class="fa fa-file-text fa-5x"></i>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                      <div class="huge"><%= @projects %></div>
+                      <div>Projects</div>
+                  </div>
+              </div>
+          </div>
+          <a href="<%= projects_path %>">
+              <div class="panel-footer">
+                  <span class="pull-left">View Details</span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                  <div class="clearfix"></div>
+              </div>
+          </a>
+      </div> 
+  </div>
+  <div class="col-lg-4 col-md-4">
+      <div class="panel panel-green">
+          <div class="panel-heading">
+              <div class="row">
+                  <div class="col-xs-3">
+                      <i class="fa fa-tasks fa-5x"></i>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                      <div class="huge"><%= @task_count %></div>
+                      <div>New Tasks!</div>
+                  </div>
+              </div>
+          </div>
+          <a href="<%= tasks_path %>">
+              <div class="panel-footer">
+                  <span class="pull-left">View Details</span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                  <div class="clearfix"></div>
+              </div>
+          </a>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-4">
+      <div class="panel panel-yellow">
+          <div class="panel-heading">
+              <div class="row">
+                  <div class="col-xs-3">
+                      <i class="fa  fa-user  fa-5x"></i>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                      <div class="huge"><%= @teams %></div>
+                      <div>Teams</div>
+                  </div>
+              </div>
+          </div> 
+          <a href="<%= teams_path %>">
+              <div class="panel-footer">
+                  <span class="pull-left">View Details</span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                  <div class="clearfix"></div>
+              </div>
+          </a>
+      </div> 
+  </div>
+ <!-- <div class="col-lg-3 col-md-6">
+      <div class="panel panel-red">
+          <div class="panel-heading">
+              <div class="row">
+                  <div class="col-xs-3">
+                      <i class="fa fa-support fa-5x"></i>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                      <div class="huge">13</div>
+                      <div>Support Tickets!</div>
+                  </div>
+              </div>
+          </div>
+          <a href="#">
+              <div class="panel-footer">
+                  <span class="pull-left">View Details</span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                  <div class="clearfix"></div>
+              </div>
+          </a>
+      </div>
+  </div>    -->         
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Letest Task priority
+        </div>
+        <div class="panel-body">
+          <div class="flot-chart">
+            <!-- <div class="flot-chart-content" id="flot-line-chart"></div> -->
+            <%= pie :pie_chart, @pieSize, @pieData%>  
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          All Task Progress
+        </div>
+        <div class="panel-body">
+          <div class="flot-chart">
+            <!-- <div class="flot-chart-content" id="flot-line-chart"></div> -->
+            <%= pie :pie_chart_1, @pieSize_1, @pieData_1 %>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <h1>
+    Welcome to Task Manager System| <%= link_to "Sign up", new_user_registration_path %> | <%= link_to "sign in", new_user_session_path %>
+  </h1>
+   <h2 style="text-align:center">Pricing Tables</h2>
+
+    <div class="columns">
+      <ul class="price">
+        <li class="header">Basic</li>
+        <li class="grey">$ 9.99 / year</li>
+        <li>10GB Storage</li>
+        <li>10 Emails</li>
+        <li>10 Domains</li>
+        <li>1GB Bandwidth</li>
+        <li class="grey">
+          <!-- <a href="#" class="button">Sign Up</a> -->
+          <%= link_to "Sign up", new_user_registration_path ,:class=>"button"%>
+        </li>
+      </ul>
+    </div>
+
+    <div class="columns">
+      <ul class="price">
+        <li class="header" style="background-color:#4CAF50">Pro</li>
+        <li class="grey">$ 24.99 / year</li>
+        <li>25GB Storage</li>
+        <li>25 Emails</li>
+        <li>25 Domains</li>
+        <li>2GB Bandwidth</li>
+        <li class="grey"><a href="#" class="button">Sign Up</a></li>
+      </ul>
+    </div>
+
+    <div class="columns">
+      <ul class="price">
+        <li class="header">Premium</li>
+        <li class="grey">$ 49.99 / year</li>
+        <li>50GB Storage</li>
+        <li>50 Emails</li>
+        <li>50 Domains</li>
+        <li>5GB Bandwidth</li>
+        <li class="grey"><a href="#" class="button">Sign Up</a></li>
+      </ul>
+    </div>
+<% end %>
+

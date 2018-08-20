@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Your Profile
+      </div>
+      <div class="panel-body">
+        <%= form_with(model: user, local: true) do |form| %>
+          <% if user.errors.any? %>
+            <div id="error_explanation">
+              <ul>
+              <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <fieldset>
+            <div class="form-group">
+              <%= form.label :photo %><br />
+              <%= form.file_field :photo, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= form.label :email %><br />
+              <%= form.email_field :email, class: "form-control",placeholder: "E-mail", :disabled => true  , autofocus: true, autocomplete: "email" %>
+            </div>
+            <div class="form-group">
+              <%= form.label :firstname %><br />
+              <%= form.text_field :firstname, class: "form-control",placeholder: "First Name" %>
+            </div>
+            <div class="form-group">
+              <%= form.label :lastname %><br />
+              <%= form.text_field :lastname, class: "form-control",placeholder: "Last Name" %>
+            </div>
+            <div class="form-group">
+              <%= form.label :phone_number %><br />
+              <%= form.text_field :phone_number, class: "form-control",placeholder: "Phone Number" %>
+            </div>
+            <div class="form-group">
+              <%= form.label :role %><br />
+              <%#= form.select :role, Role.all.collect {|c| [ c.name, c.id ] } %>
+              <%= form.collection_select :role, User::ROLES, :to_s, :humanize %>
+            </div>
+            <div class="form-group">
+              <%= form.label :is_turn_on %><br />
+              <%= form.check_box :is_turn_on %>
+            </div>
+
+            <div class="col-md-offset-3 col-md-6">
+              <%= form.submit "Save Profile",:class=>"btn btn-lg btn-success btn-block" %>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <%#= form_with(model: user, local: true) do |form| %>
+  <%# if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%#= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <%# user.errors.full_messages.each do |message| %>
+        <li><%#= message %></li>
+      <%# end %>
+      </ul>
+    </div>
+  <%# end %>
+  <div class="field">
+    <%#= form.label :email %><br />
+    <%#= form.email_field :email , :disabled => true %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :firstname %><br />
+    <%#= form.text_field :firstname %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :lastname %><br />
+    <%#= form.text_field :lastname %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :phone_number %><br />
+    <%#= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :photo %><br />
+    <%#= form.file_field :photo %>
+  </div>
+
+  <div class="actions">
+    <%#= form.submit %>
+  </div>
+<%# end %> -->
