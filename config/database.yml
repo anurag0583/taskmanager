@@ -44,7 +44,8 @@ production:
   <<: *default
   database: tms_production
   database: dcj700qfh6ri78
-  username: owvbbfftlamspw
-  password: cfed3272706e199dc3c144600bbe824dd01b7d438348f7a52439db348fc8e9fc
+  username: iuwhvpinycwdjc
+  password: 8ced6e923f3096f38241650b446170701a62bb0142bfacf050e2b3f1a8355e10
   port: 5432
   host: ec2-184-72-247-70.compute-1.amazonaws.com
+
