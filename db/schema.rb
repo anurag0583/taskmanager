@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20180319111326) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -60,8 +63,8 @@ ActiveRecord::Schema.define(version: 20180319111326) do
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "project_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -71,8 +74,8 @@ ActiveRecord::Schema.define(version: 20180319111326) do
   end
 
   create_table "roles_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "role_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -96,8 +99,8 @@ ActiveRecord::Schema.define(version: 20180319111326) do
   end
 
   create_table "tasks_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "task_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -109,8 +112,8 @@ ActiveRecord::Schema.define(version: 20180319111326) do
   end
 
   create_table "teams_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "team_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
