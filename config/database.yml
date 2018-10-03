@@ -30,7 +30,6 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: tms_development
@@ -44,5 +43,5 @@ test:
 production:
   <<: *default
   database: tms_production
-  username: tms
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  username: inuscg
+  password: D@ata12care

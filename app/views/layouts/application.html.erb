@@ -73,9 +73,12 @@
         </div>
       <% else %>
         <div class="container">
-          <div class="col-lg-12">
-            <p id="notice"><%= notice %></p>
-          </div>
+          <% if notice.present? %>
+            <div class="col-lg-12 alert-success">
+              <p id="notice"><%= notice %></p>
+            </div>
+          <% end %>
+
           <%= yield %>
         </div>
       <% end %>
