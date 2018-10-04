@@ -292,7 +292,6 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.5)
   letter_opener
-  listen (>= 3.0.5, < 3.2)
   paperclip (~> 5.2.1)
   pg
   puma (~> 3.7)
