@@ -44,4 +44,4 @@ production:
   <<: *default
   database: tms_production
   username: tms
-  password: tms123456
+  password: <%= ENV['TMS_DATABASE_PASSWORD'] %>
