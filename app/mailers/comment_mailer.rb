@@ -7,6 +7,6 @@ class CommentMailer < ApplicationMailer
     @project = project
     @comment = comment
     @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Added user in project')
+    mail(to: @user.email, subject: 'Comment Added')
   end
 end

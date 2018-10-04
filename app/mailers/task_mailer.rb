@@ -4,7 +4,7 @@ class TaskMailer < ApplicationMailer
 	def add_task(user)
 		@user = user
     # @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Added user in project') 	
+    mail(to: @user.email, subject: 'Added Task in project') 	
 	end
   
   def assign_task_to_user(admin,user,task,project)
@@ -13,6 +13,6 @@ class TaskMailer < ApplicationMailer
     @task = task
     @project = project
     # @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Added user in project')
+    mail(to: @user.email, subject: 'Assign task in project')
   end
 end

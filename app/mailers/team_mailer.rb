@@ -6,7 +6,7 @@ class TeamMailer < ApplicationMailer
     @user = user
     @team = team
     # @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Added user in project')
+    mail(to: @user.email, subject: 'Added user in team')
   end
 
   def remove_user(admin,user,team)
@@ -14,7 +14,7 @@ class TeamMailer < ApplicationMailer
     @user = user
     @team = team
     # @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Removed user from the project')
+    mail(to: @user.email, subject: 'Removed user from the team')
   end
 
 end
