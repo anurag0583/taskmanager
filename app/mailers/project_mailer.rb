@@ -1,5 +1,5 @@
 class ProjectMailer < ApplicationMailer
-	default from: 'notifications@example.com'
+	default from: 'Task Manager<info@taskmanager.com>'
  
   def add_user_in_project(user,admin,project)
     @user = user

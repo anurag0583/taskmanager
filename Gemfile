@@ -69,7 +69,7 @@ gem 'pundit'
 gem 'activeadmin'
 gem 'chart'
 
-gem 'sidekiq'
+# gem 'sidekiq'
 
 gem 'sinatra', require: false
 gem 'slim'

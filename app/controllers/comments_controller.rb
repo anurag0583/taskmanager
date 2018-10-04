@@ -39,9 +39,9 @@ class CommentsController < ApplicationController
       if @comment.save
         
         if current_user.is_turn_on == true
-          CommentMailer.post_comment(@task_created_by,@task,@project,@comment).deliver_later
+          CommentMailer.post_comment(@task_created_by,@task,@project,@comment).deliver_now
           
-          CommentMailer.post_comment(@task_assign_to ,@task,@project,@comment).deliver_later
+          CommentMailer.post_comment(@task_assign_to ,@task,@project,@comment).deliver_now
         end
         
         format.html { redirect_to task_path(@task), notice: 'Comment was successfully created.' }

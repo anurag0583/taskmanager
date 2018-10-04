@@ -1,5 +1,5 @@
 class CommentMailer < ApplicationMailer
-	default from: 'notifications@example.com'
+	default from: 'Task Manager<info@taskmanager.com>'
  
   def post_comment(user,task,project,comment)
     @user = user

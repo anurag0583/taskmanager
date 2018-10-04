@@ -89,24 +89,30 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # config.action_mailer.asset_host = "https://project-manager-inuscg.herokuapp.com"
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.action_mailer.asset_host = "http://localhost:3000"
   # config.action_mailer.delivery_method = :letter_opener
-  # config.action_mailer.default_url_options = {
-  #   host: 'https://project-manager-inuscg.herokuapp.com'
-  #   # port: 3000
+  config.action_mailer.default_url_options = {
+    host: 'localhost',
+    port: 3000
+  }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address => "smtp.gmail.com",
+  #   :port => 587,
+  #   domain: 'inuscg.com',
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name:'pooja.mokariya@inuscg.com',
+  #   password: 'pooja#12345'
   # }
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host:'localhost', port: '3000' }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 587,
+ 
+  ActionMailer::Base.smtp_settings = {
+    :user_name => 'pooja-inuscg',
+    :password => 'data12care',
     :domain => 'localhost:3000',
-    :user_name => "pooja.mokariya@inuscg.com",
-    :password => "pooja#123",
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
     :authentication => :plain,
     :enable_starttls_auto => true
   }

@@ -1,11 +1,11 @@
 class TeamMailer < ApplicationMailer
-	default from: 'notifications@example.com'
+	default from: 'Task Manager<info@taskmanager.com>'
  
   def add_user(admin,user,team)
     @admin = admin
     @user = user
     @team = team
-    @url  = 'http://example.com/login'
+    # @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Added user in project')
   end
 
@@ -13,7 +13,7 @@ class TeamMailer < ApplicationMailer
     @admin = admin
     @user = user
     @team = team
-    @url  = 'http://example.com/login'
+    # @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Removed user from the project')
   end
 

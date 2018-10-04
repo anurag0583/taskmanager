@@ -40,6 +40,10 @@ ActiveRecord::Schema.define(version: 20180319111326) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
@@ -129,6 +133,10 @@ ActiveRecord::Schema.define(version: 20180319111326) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "firstname"
     t.string "lastname"
     t.string "phone_number"
@@ -138,8 +146,9 @@ ActiveRecord::Schema.define(version: 20180319111326) do
     t.datetime "photo_updated_at"
     t.integer "role_id"
     t.string "role"
-    t.boolean "is_turn_on"
+    t.boolean "is_turn_on", default: true
     t.string "plan"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

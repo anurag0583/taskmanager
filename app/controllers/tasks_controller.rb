@@ -53,7 +53,7 @@ class TasksController < ApplicationController
     @user_of_task_project.each do |u|
       if u.id != current_user.id
         if current_user.is_turn_on == true
-          TaskMailer.assign_task_to_user(@user,u,@task,@project).deliver_later
+          TaskMailer.assign_task_to_user(@user,u,@task,@project).deliver_now
         end
       end
     end
@@ -123,7 +123,7 @@ class TasksController < ApplicationController
     #   end
     # end
     if current_user.is_turn_on == true
-      TaskMailer.assign_task_to_user(@admin,@user,@task,@project).deliver_later
+      TaskMailer.assign_task_to_user(@admin,@user,@task,@project).deliver_now
     end
     respond_to do |format|
       format.html { redirect_to @task, notice: 'project member added successfully.' }

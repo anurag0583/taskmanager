@@ -53,7 +53,8 @@ class ProjectsController < ApplicationController
           if u.id != current_user.id
             @project.users << u
             if current_user.is_turn_on == true
-              ProjectMailer.add_user_in_project(u,@admin,@project).deliver_later
+              ProjectMailer.add_user_in_project(u,@admin,@project).deliver_now
+              
             end
           end
         end
@@ -105,7 +106,7 @@ class ProjectsController < ApplicationController
       end
 
       if current_user.is_turn_on == true
-        ProjectMailer.add_user_in_project(@user,@admin,@project).deliver_later
+        ProjectMailer.add_user_in_project(@user,@admin,@project).deliver_now
       end
 
       respond_to do |format|
@@ -127,7 +128,7 @@ class ProjectsController < ApplicationController
     @project.users.delete(@user)
 
     if current_user.is_turn_on == true
-      ProjectMailer.remove_user(@user,@admin,@project).deliver_later
+      ProjectMailer.remove_user(@user,@admin,@project).deliver_now
     end
     respond_to do |format|
       format.html { redirect_to @project, notice: 'Removed member from project successfully.' }

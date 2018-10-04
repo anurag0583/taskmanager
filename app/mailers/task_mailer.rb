@@ -1,9 +1,9 @@
 class TaskMailer < ApplicationMailer
-	default from: 'notifications@example.com'
+	default from: 'Task Manager<info@taskmanager.com>'
  
 	def add_task(user)
 		@user = user
-    @url  = 'http://example.com/login'
+    # @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Added user in project') 	
 	end
   
@@ -12,7 +12,7 @@ class TaskMailer < ApplicationMailer
     @user = user
     @task = task
     @project = project
-    @url  = 'http://example.com/login'
+    # @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Added user in project')
   end
 end
