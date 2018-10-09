@@ -59,7 +59,8 @@ class TeamsController < ApplicationController
               # ProjectMailer.delay.add_user_in_project(u,@admin,@team)
 
               # HardWorker.perform_async('bob', 5)
-              ProjectMailer.add_user_in_project(u,@admin,@team).deliver_now
+              # ProjectMailer.add_user_in_project(u,@admin,@team).deliver_now
+              TeamMailer.add_user(@admin,u,@team).deliver_now
               
             end
           end
@@ -124,7 +125,7 @@ class TeamsController < ApplicationController
     @admin = current_user
     
     if current_user.is_turn_on == true
-      TeamMailer.add_user(@admin,@user,@team).deliver_now
+      TeamMailer.remove_user(@admin,@user,@team).deliver_now
     end
 
     respond_to do |format|

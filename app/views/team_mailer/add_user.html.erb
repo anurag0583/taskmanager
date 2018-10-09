@@ -1,3 +1,88 @@
+<table bgcolor="#fdfdfd" class="m_972579031619840180body" style="box-sizing:border-box;border-spacing:0;width:100%;background-color:#fdfdfd;border-collapse:separate!important" width="100%">
+  <tbody>
+    <tr>
+      <td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">&nbsp;</td>
+
+      <td class="m_972579031619840180container" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;display:block;width:600px;max-width:600px;margin:0 auto!important" valign="top" width="600">
+
+        <div class="m_972579031619840180content" style="box-sizing:border-box;display:block;max-width:600px;margin:0 auto;padding:10px">
+          <!-- <span class="m_972579031619840180preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;width:0">
+          Let's confirm your email address.</span> -->
+       
+          <div class="m_972579031619840180header" style="box-sizing:border-box;width:100%;margin-bottom:30px;margin-top:15px">
+            <table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+              <tbody>
+                <tr>
+                  <td align="left" class="m_972579031619840180align-left" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;text-align:left" valign="top"><span class="m_972579031619840180sg-image"><a href="#" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none" target="_blank" data-saferedirecturl="#">
+                    <!-- <img alt="SendGrid" height="22" src="https://ci4.googleusercontent.com/proxy/clQVvtu-CHYZv-DtHJds3W-_UdHAsqVfBvmhmWTFdjsS9uh8oA9q72nDJU27hPbchli-RcQcx6wDxsSF6QK74Yyp8l4XT5ib8AIrGhVp-cIG9w=s0-d-e1-ft#https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png" style="max-width:100%;border-style:none;width:123px;height:22px" width="123" class="CToWUd"> -->
+                      <h1> TaskManager </h1> </a></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="m_972579031619840180block" style="box-sizing:border-box;width:100%;margin-bottom:30px;background:#ffffff;border:1px solid #f0f0f0">
+            <table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+              <tbody>
+                <tr>
+                  <td class="m_972579031619840180wrapper" style="box-sizing:border-box;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;padding:30px" valign="top">
+                    <table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+                      <tbody>
+                        <tr>
+                          <td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">
+                            <h2 style="margin:0;margin-bottom:30px;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-weight:300;line-height:1.5;font-size:24px;color:#294661!important">
+                              Hi <%= @user.email.split("@")[0] %> <br>
+
+                              Welcome to the Team. <br>
+
+                              
+                            </h2>
+                            <p style="margin:0;margin-bottom:30px;color:#294661;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300">
+                              <%= @admin.email.split("@")[0] %> added you in this <b><%= @team.name %></b> team <br>
+
+                              Go to the Team dashbord By clicking on the following link.</p>
+
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">
+                            <table cellpadding="0" cellspacing="0" class="m_972579031619840180btn m_972579031619840180btn-primary" style="box-sizing:border-box;border-spacing:0;width:100%;border-collapse:separate!important" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td align="center" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;padding-bottom:15px" valign="top">
+                                    <table cellpadding="0" cellspacing="0" style="box-sizing:border-box;border-spacing:0;width:auto;border-collapse:separate!important">
+                                      <tbody>
+                                        <tr>
+                                          <td align="center" bgcolor="#348eda" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;background-color:#348eda;border-radius:2px;text-align:center;padding: 10px;" valign="top">
+                                            <a href="<%=team_url(@team.id)%>" style="color: white; text-decoration: none;">
+                                              <%= @team.name %>
+                                            </a>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </td>
+      <td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,10 +90,10 @@
   </head>
   <body>
     <h1>Welcome to Task Manager</h1>
-    <h3>Hi, <%= @user.email.split("@")[0] %></h3>
+    <h3>Hi, <%#= @user.email.split("@")[0] %></h3>
     <p>
-      <%= link_to @user.email.split("@")[0] , user_url(@user) %>> added you in this <b><%= link_to @team.name , team_url(@team) %></b> team.
+      <%#= link_to @admin.email.split("@")[0] , user_url(@user) %>> added you in this <b><%#= link_to @team.name , team_url(@team) %></b> team.
     </p>
-    <p>Thanks for joining and have a great day!</p> <p>Turn it <%= link_to 'off', torn_off_email_user_url(@user) %>.</p>
+    <p>Thanks for joining and have a great day!</p> <p>Turn it <%#= link_to 'off', torn_off_email_user_url(@user) %>.</p>
   </body>
-</html>
+</html> -->

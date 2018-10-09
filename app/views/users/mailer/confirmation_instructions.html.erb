@@ -1,5 +1,110 @@
-<p>Welcome <%= @email %>!</p>
+<table bgcolor="#fdfdfd" class="m_972579031619840180body" style="box-sizing:border-box;border-spacing:0;width:100%;background-color:#fdfdfd;border-collapse:separate!important" width="100%">
+	<tbody>
+		<tr>
+			<td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">&nbsp;</td>
 
+			<td class="m_972579031619840180container" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;display:block;width:600px;max-width:600px;margin:0 auto!important" valign="top" width="600">
+
+				<div class="m_972579031619840180content" style="box-sizing:border-box;display:block;max-width:600px;margin:0 auto;padding:10px">
+					<span class="m_972579031619840180preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;width:0">Let's confirm your email address.</span>
+	     
+					<div class="m_972579031619840180header" style="box-sizing:border-box;width:100%;margin-bottom:30px;margin-top:15px">
+						<table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+							<tbody>
+								<tr>
+									<td align="left" class="m_972579031619840180align-left" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;text-align:left" valign="top"><span class="m_972579031619840180sg-image"><a href="#" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none" target="_blank" data-saferedirecturl="#">
+										<!-- <img alt="SendGrid" height="22" src="https://ci4.googleusercontent.com/proxy/clQVvtu-CHYZv-DtHJds3W-_UdHAsqVfBvmhmWTFdjsS9uh8oA9q72nDJU27hPbchli-RcQcx6wDxsSF6QK74Yyp8l4XT5ib8AIrGhVp-cIG9w=s0-d-e1-ft#https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png" style="max-width:100%;border-style:none;width:123px;height:22px" width="123" class="CToWUd"> -->
+											<h1> TaskManager </h1> </a></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="m_972579031619840180block" style="box-sizing:border-box;width:100%;margin-bottom:30px;background:#ffffff;border:1px solid #f0f0f0">
+						<table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+							<tbody>
+								<tr>
+									<td class="m_972579031619840180wrapper" style="box-sizing:border-box;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;padding:30px" valign="top">
+										<table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+											<tbody>
+												<tr>
+													<td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">
+													  <h2 style="margin:0;margin-bottom:30px;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-weight:300;line-height:1.5;font-size:24px;color:#294661!important">
+													  	You're on your way!<br>
+
+													    Let's confirm your email address.
+													  </h2>
+													  <p style="margin:0;margin-bottom:30px;color:#294661;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300">By clicking on the following link, you are confirming your email address.</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">
+														<table cellpadding="0" cellspacing="0" class="m_972579031619840180btn m_972579031619840180btn-primary" style="box-sizing:border-box;border-spacing:0;width:100%;border-collapse:separate!important" width="100%">
+															<tbody>
+																<tr>
+																	<td align="center" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;padding-bottom:15px" valign="top">
+																		<table cellpadding="0" cellspacing="0" style="box-sizing:border-box;border-spacing:0;width:auto;border-collapse:separate!important">
+																			<tbody>
+																				<tr>
+																					<td align="center" bgcolor="#348eda" style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;background-color:#348eda;border-radius:2px;text-align:center;padding: 10px;" valign="top">
+																						<a href="<%=confirmation_url(@resource, confirmation_token: @token)%>" style="color: white; text-decoration: none;">
+																							Confirm Email Address
+																						</a>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- 	<div class="m_972579031619840180footer" style="box-sizing:border-box;clear:both;width:100%">
+							<table style="box-sizing:border-box;width:100%;border-spacing:0;font-size:12px;border-collapse:separate!important" width="100%">
+								<tbody>
+
+									<tr style="font-size:12px">
+
+										<td align="center" class="m_972579031619840180align-center" style="box-sizing:border-box;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;vertical-align:top;font-size:12px;text-align:center;padding:20px 0" valign="top"><span class="m_972579031619840180sg-image" style="float:none;display:block;text-align:center"><a href="http://email.sendgrid.com/wf/click?upn=amcZp-2Bj6jkfjtFMSxFS9wlc5jn9sr2CKTp21i-2FQzVZEiswFcSEFuhP4zRcX-2BeIazhsPXLCxyv82C3CPCWN1gu-2BLYcubuhQx9E4EOcMZgtCHzTOBhif4kmbYKNjPSmX0t_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BPAuPQ6M-2Bbu3BVakHHlk8W3HtmgFTdaPkadJd8FeKPLR-2BdglzeCmkdXcQbNjBe1zx-2Bimw3Dt3i8r9CkVEPv-2BX9LCCpbQx3JCnN9LZEpg-2BOIQS371zeXamrlm6UysqXpNJv4UD83pOEm56Bd3mtwK1QyBOCe9aPxPLnJQMUjITaHGxGZxzZlEWISQG3L-2FRp1ZomHE1XI7-2BVNLGD319kn6DZw-3D" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none;font-size:12px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.sendgrid.com/wf/click?upn%3DamcZp-2Bj6jkfjtFMSxFS9wlc5jn9sr2CKTp21i-2FQzVZEiswFcSEFuhP4zRcX-2BeIazhsPXLCxyv82C3CPCWN1gu-2BLYcubuhQx9E4EOcMZgtCHzTOBhif4kmbYKNjPSmX0t_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BPAuPQ6M-2Bbu3BVakHHlk8W3HtmgFTdaPkadJd8FeKPLR-2BdglzeCmkdXcQbNjBe1zx-2Bimw3Dt3i8r9CkVEPv-2BX9LCCpbQx3JCnN9LZEpg-2BOIQS371zeXamrlm6UysqXpNJv4UD83pOEm56Bd3mtwK1QyBOCe9aPxPLnJQMUjITaHGxGZxzZlEWISQG3L-2FRp1ZomHE1XI7-2BVNLGD319kn6DZw-3D&amp;source=gmail&amp;ust=1539088575435000&amp;usg=AFQjCNFXjjXLqqyakL7J2Bs0hNVEM5mQfA"><img alt="SendGrid" height="16" src="https://ci4.googleusercontent.com/proxy/clQVvtu-CHYZv-DtHJds3W-_UdHAsqVfBvmhmWTFdjsS9uh8oA9q72nDJU27hPbchli-RcQcx6wDxsSF6QK74Yyp8l4XT5ib8AIrGhVp-cIG9w=s0-d-e1-ft#https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png" style="max-width:100%;border-style:none;font-size:12px;width:89px;height:16px" width="89" class="CToWUd"></a></span>
+
+
+
+										<p class="m_972579031619840180tagline" style="color:#294661;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;margin-bottom:5px;margin:10px 0 20px">Send with Confidence</p>
+
+										<p style="margin:0;color:#294661;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-weight:300;font-size:12px;margin-bottom:5px">© SendGrid Inc. 1801 California Street, Suite 500, Denver, CO 80202 USA</p>
+
+
+
+										<p style="margin:0;color:#294661;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-weight:300;font-size:12px;margin-bottom:5px"><a href="http://email.sendgrid.com/wf/click?upn=amcZp-2Bj6jkfjtFMSxFS9wpj0IA4TLVD6FCpYrsF1lFdp4LttDwbbiiD916ftgVf-2BqfSYZBFL22MRsiNXTBNFH5-2F9Cat8G3AluZeaNBtOTuA6RCm-2FceL6u0NpFDPAuBmA_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BFhNjMDzA5aDU5b97y0UKLB9puyZm9pet09B7D-2FDt1GJBSJcI4cyPuu9Ug8IWXvt7Ov2aau9L1WEp4Se68JeAVZAiK7yd-2FsdsU3M3LQaiNuK5XpVIMl0ZH6coMf8ANZjrJadaVceIT05dGik3mjBGpcjcTFXl-2BuSmDlG8VVYT5KzAAncpQv69xBzKLIMSUJfgTtPnu2GQW5zGhAFFD56MFo-3D" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none;font-size:12px;padding:0 5px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.sendgrid.com/wf/click?upn%3DamcZp-2Bj6jkfjtFMSxFS9wpj0IA4TLVD6FCpYrsF1lFdp4LttDwbbiiD916ftgVf-2BqfSYZBFL22MRsiNXTBNFH5-2F9Cat8G3AluZeaNBtOTuA6RCm-2FceL6u0NpFDPAuBmA_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BFhNjMDzA5aDU5b97y0UKLB9puyZm9pet09B7D-2FDt1GJBSJcI4cyPuu9Ug8IWXvt7Ov2aau9L1WEp4Se68JeAVZAiK7yd-2FsdsU3M3LQaiNuK5XpVIMl0ZH6coMf8ANZjrJadaVceIT05dGik3mjBGpcjcTFXl-2BuSmDlG8VVYT5KzAAncpQv69xBzKLIMSUJfgTtPnu2GQW5zGhAFFD56MFo-3D&amp;source=gmail&amp;ust=1539088575436000&amp;usg=AFQjCNGv4T9u1eUPMjHp7io1Q57xQwVX8w">Blog</a> <a href="http://email.sendgrid.com/wf/click?upn=Zm6EhJ10fShR5SYCtV8tle9JiqJEc5S2YlozYv51K3wx-2BBkCX6nucL2XM1I2lj0ngwpR-2BCkVNLRNFneXipejRsch1JotlOz8KF65K5luKIkxCJDDmmhf2Zm170WT8YMg_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BO43ucBI1jMk9bUuk349LWkr25bVwFJ2OBIZ-2FQHApQvlHl97G8YIswuIYGYJUVumhpNvfs1UvHMaLxL3WjaIcSbKgeenSYyav6uAkblo1bKglpFBDeO1Z0nDR50RwZJHoid2UpcRUkergW0y4C1yIW2lkyX4S-2F-2FERv7hDxSk-2B-2FLxcivktkR89uS76fke-2B5YhHzK3HsdZOr20TgjrhYBMJeI-3D" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none;font-size:12px;padding:0 5px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.sendgrid.com/wf/click?upn%3DZm6EhJ10fShR5SYCtV8tle9JiqJEc5S2YlozYv51K3wx-2BBkCX6nucL2XM1I2lj0ngwpR-2BCkVNLRNFneXipejRsch1JotlOz8KF65K5luKIkxCJDDmmhf2Zm170WT8YMg_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BO43ucBI1jMk9bUuk349LWkr25bVwFJ2OBIZ-2FQHApQvlHl97G8YIswuIYGYJUVumhpNvfs1UvHMaLxL3WjaIcSbKgeenSYyav6uAkblo1bKglpFBDeO1Z0nDR50RwZJHoid2UpcRUkergW0y4C1yIW2lkyX4S-2F-2FERv7hDxSk-2B-2FLxcivktkR89uS76fke-2B5YhHzK3HsdZOr20TgjrhYBMJeI-3D&amp;source=gmail&amp;ust=1539088575436000&amp;usg=AFQjCNHW7PZ9dKIQ3eCXn9fKrHcfpYjMyQ">GitHub</a> <a href="http://email.sendgrid.com/wf/click?upn=WGK6j-2FYXWrpj3qqqq6YCAzEvFdvSqzWOPYpMxe-2BYFvaJVXIHKlryNTk5vY4VQq44txRnc8REif4AUMQFq1tiKToyd-2FNx0gD-2BeY2RDddzZeVFVKormj32bL5fm8M4wEB-2Ba9PpPlGcktWUfepQhEqD6w-3D-3D_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BKMK427val20M-2B5T02VQX9TFhrW6Y6rxEDW-2FrOLIet4Vxdjo0eJkZynnrh6Km7vMmh8AywysAytQxdIFn2blLw2Iq6bZkItBhhRloo4nX3G3rGK8FBFRpv08ws-2F95aQ3-2FbwpRPT-2FbWePPML1K-2Bm4XGvlKoDq0DSXhnSmqXTolOddcRC1y-2FW4Wq7pYf9Z9MsQmvtpvt1hNVciv6JP50GZX6k-3D" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none;font-size:12px;padding:0 5px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.sendgrid.com/wf/click?upn%3DWGK6j-2FYXWrpj3qqqq6YCAzEvFdvSqzWOPYpMxe-2BYFvaJVXIHKlryNTk5vY4VQq44txRnc8REif4AUMQFq1tiKToyd-2FNx0gD-2BeY2RDddzZeVFVKormj32bL5fm8M4wEB-2Ba9PpPlGcktWUfepQhEqD6w-3D-3D_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BKMK427val20M-2B5T02VQX9TFhrW6Y6rxEDW-2FrOLIet4Vxdjo0eJkZynnrh6Km7vMmh8AywysAytQxdIFn2blLw2Iq6bZkItBhhRloo4nX3G3rGK8FBFRpv08ws-2F95aQ3-2FbwpRPT-2FbWePPML1K-2Bm4XGvlKoDq0DSXhnSmqXTolOddcRC1y-2FW4Wq7pYf9Z9MsQmvtpvt1hNVciv6JP50GZX6k-3D&amp;source=gmail&amp;ust=1539088575436000&amp;usg=AFQjCNE1TsiU1lEVU7luR8lNt4Ti0OJ86Q">Twitter</a> <a href="http://email.sendgrid.com/wf/click?upn=2kK4XUQUf0KL5B9U9lEMS4Of1ZytJg732qIfbxYfEOTchQTZ0tYaFpJsXWQvDzPe8MVhreMQL3ZSJ9SeSNYM8FL3qPLbzjDdZyL26fFEdIT75M6iyl3yBYcM4oxYuUL8XA3auncO4haBDN4RSTT1dw-3D-3D_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BAPPOjegQBY4dPNwXfLOSDAzVhvefd9-2FQbL-2Bt-2FBD-2B36bPObY9ao3JKn1-2F-2BKAwVbVqhadSs2h-2FzGO4UL70rqbthntHB5k1fh-2BlbDtCEweog2w4VS32fn4wml4DIoAnKXAwXjKdIhcN1cP7afl9GPiCm-2BnSM-2BhCbZrbvHdLhz5g0-2BeLXgyxksKdrnHBXQOgkpjbdj57XCHJAasq9jdqDO2jlE-3D" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none;font-size:12px;padding:0 5px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.sendgrid.com/wf/click?upn%3D2kK4XUQUf0KL5B9U9lEMS4Of1ZytJg732qIfbxYfEOTchQTZ0tYaFpJsXWQvDzPe8MVhreMQL3ZSJ9SeSNYM8FL3qPLbzjDdZyL26fFEdIT75M6iyl3yBYcM4oxYuUL8XA3auncO4haBDN4RSTT1dw-3D-3D_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BAPPOjegQBY4dPNwXfLOSDAzVhvefd9-2FQbL-2Bt-2FBD-2B36bPObY9ao3JKn1-2F-2BKAwVbVqhadSs2h-2FzGO4UL70rqbthntHB5k1fh-2BlbDtCEweog2w4VS32fn4wml4DIoAnKXAwXjKdIhcN1cP7afl9GPiCm-2BnSM-2BhCbZrbvHdLhz5g0-2BeLXgyxksKdrnHBXQOgkpjbdj57XCHJAasq9jdqDO2jlE-3D&amp;source=gmail&amp;ust=1539088575436000&amp;usg=AFQjCNE6hp4mMp2fCJRI5YxeqOHo-IkxEA">Facebook</a> <a href="http://email.sendgrid.com/wf/click?upn=2kK4XUQUf0KL5B9U9lEMS0nexj3eioarMVfnj0pk9T6ryMPXQ9GfOKBKyNXtIjRpSb-2FGfqa1JDlXKkbjpjm-2BpqrzBkUR7a5sbwYAPPJaxGTJgsXT5DkYmWClQDk1OKD2vPHp9g2LGlyk0u6y0CPPsA-3D-3D_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BL78brRd9H9-2BZLAxIpeoWn4xTgGXue8PKwzeF34PnM3-2BWq0sNSsEhn-2BscC8tE3conLHSakKXYFgdS6V8Eifx6rLcHRz-2BG5e-2BZHdyiO5YGgAmh4vVWP-2BF-2B-2BJ3WRNIlTA9j23RBRVOaMqh6CmOkrQFOvpQvW6TZbQ3mjkW0sZgE4Yj24yLlG7SvEihf1BlPAg-2FoYf916mNcoItLTTvGHGChOQ-3D" style="box-sizing:border-box;color:#348eda;font-weight:400;text-decoration:none;font-size:12px;padding:0 5px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.sendgrid.com/wf/click?upn%3D2kK4XUQUf0KL5B9U9lEMS0nexj3eioarMVfnj0pk9T6ryMPXQ9GfOKBKyNXtIjRpSb-2FGfqa1JDlXKkbjpjm-2BpqrzBkUR7a5sbwYAPPJaxGTJgsXT5DkYmWClQDk1OKD2vPHp9g2LGlyk0u6y0CPPsA-3D-3D_-2BHopwp2PG2Ljtp2-2FeXKKV0xkvabUstFovgMqbTwrsoiqVJQFL7iYN5umJqvxs3DSex9vc164uBzSpo8z5bkV-2BL78brRd9H9-2BZLAxIpeoWn4xTgGXue8PKwzeF34PnM3-2BWq0sNSsEhn-2BscC8tE3conLHSakKXYFgdS6V8Eifx6rLcHRz-2BG5e-2BZHdyiO5YGgAmh4vVWP-2BF-2B-2BJ3WRNIlTA9j23RBRVOaMqh6CmOkrQFOvpQvW6TZbQ3mjkW0sZgE4Yj24yLlG7SvEihf1BlPAg-2FoYf916mNcoItLTTvGHGChOQ-3D&amp;source=gmail&amp;ust=1539088575436000&amp;usg=AFQjCNGbutvIOLbRUcz2TJyDL5NWttP6-g">LinkedIn</a></p>
+
+										</td>
+
+									</tr>
+
+								</tbody>
+							</table>
+						</div> -->
+				</div>
+			</td>
+			<td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+<!-- <p>Welcome <%#= @email %>!</p>
 <p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%#= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+ -->
+<!-- <p>Hi, <%#= @user.email.split("@")[0] %></p>
+<p>You're on your way!</p>
+<p>Let's confirm your email address.</p>
+<p>By clicking on the following link, you are confirming your email address.</p>
+<p><%#= link_to 'Confirm Email Address',confirmation_url(@resource, confirmation_token: @token) %></p> -->

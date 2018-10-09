@@ -5,7 +5,7 @@ class ProjectMailer < ApplicationMailer
     @user = user
     @admin = admin
     @project = project
-    @url  = 'http://example.com/login'
+    # @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Added user in project')
   end
 
@@ -13,7 +13,7 @@ class ProjectMailer < ApplicationMailer
     @user = user
     @admin = admin
     @project = project
-    @url  = 'http://example.com/login'
+    # @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Removed user from the project')
   end
 
