@@ -77,3 +77,4 @@ gem 'sinatra', require: false
 gem 'slim'
 gem "gritter", "1.2.0"
 gem 'stripe'
+gem "letter_opener"
