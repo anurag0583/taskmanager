@@ -106,14 +106,14 @@ Rails.application.configure do
   #   password: 'pooja#12345'
   # }
  
-  ActionMailer::Base.smtp_settings = {
-    :user_name => 'pooja-inuscg',
-    :password => 'data12care',
-    :domain => 'herokuapp.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
-  }
+  # ActionMailer::Base.smtp_settings = {
+  #   :user_name => 'pooja-inuscg',
+  #   :password => 'data12care',
+  #   :domain => 'herokuapp.com',
+  #   :address => 'smtp.sendgrid.net',
+  #   :port => 587,
+  #   :authentication => :plain,
+  #   :enable_starttls_auto => true
+  # }
 end
 
