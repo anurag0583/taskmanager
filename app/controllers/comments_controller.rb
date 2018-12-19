@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     @task = Task.find(params[:task_id])
   end
 
-  # POST /comments
+  # POST /comments 
   # POST /comments.json
   def create
     @task = Task.find(params[:task_id])
@@ -32,7 +32,6 @@ class CommentsController < ApplicationController
     @task_assign_to = User.find(@task.assign_task_user_id)
     @project = @task.project
 
-    logger.info("-------#{@project.inspect}------")
     # @comment = Comment.new(comment_params)
 
     respond_to do |format|

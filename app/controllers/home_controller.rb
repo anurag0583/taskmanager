@@ -64,6 +64,5 @@ class HomeController < ApplicationController
           }
       ].to_json
     end
-
   end
 end

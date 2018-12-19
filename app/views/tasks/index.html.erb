@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-md-4">
-          Teask list
+          Task list
         </div>
         <div class="col-md-6">
           <%= form_tag tasks_path, :method => 'get' do %>
@@ -30,39 +30,71 @@
               <th>Owner </th>
               <th>Assigned </th>
               <th>Project</th>
+              <th>Status</th>
               <th colspan="3">Actions </th>
             </tr>
           </thead>
           <% @num = 1 %>
           <tbody>
             <% @tasks.each do |task| %>
-              <% if task.priority == "High" %>
-                <tr class="danger">
-              <% elsif task.priority == "Medium" %>
-                <tr class="warning">
-              <% elsif task.priority == "Low" %>
-                <tr class="info">
+              <% if current_user.role != "client" %>
+                <% if task.project.created_by != "client" %>
+                  <% if task.priority == "High" %>
+                    <tr class="danger">
+                  <% elsif task.priority == "Medium" %>
+                    <tr class="warning">
+                  <% elsif task.priority == "Low" %>
+                    <tr class="info">
+                  <% else %>
+                    <tr class="info">
+                  <% end%>   
+                      <td><%= @num %></td>
+                      <td><%= task.name.capitalize %></td>
+                      <td><%= task.created_by_id.present? ? full_name(User.find(task.created_by_id)) : ""%></td>
+                      <td><%= task.assign_task_user_id.present? ? full_name(User.find(task.assign_task_user_id)) : ""%></td>
+                      <td><%= task.project.present? ? task.project.name.capitalize : ""%></td>
+                      <td><%= task.status.capitalize %></td>
+                      <% if can? :read, task %> 
+                        <td><%= link_to 'Show', task %></td>
+                      <% end %>
+                      <% if can? :edit, task %>
+                        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+                      <% end %>
+                      <% if can? :destroy, task %> 
+                        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <% end %>
+                    </tr>
+                    <% @num += 1 %>             
+                <% end %>
               <% else %>
-                <tr class="info">
-              <% end%>   
-                  <td><%= @num %></td>
-                  <td><%= task.name %></td>
-                  <td><%= task.created_by_id.present? ? full_name(User.find(task.created_by_id)) : ""%></td>
-                  <td><%= task.assign_task_user_id.present? ? full_name(User.find(task.assign_task_user_id)) : ""%></td>
-                  <td><%= task.project.present? ? task.project.name : ""%></td>
-                  <% if can? :read, task %> 
-                    <td><%= link_to 'Show', task %></td>
-                  <% end %>
-                  <% if can? :edit, task %>
-                    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-                  <% end %>
-                  <% if can? :destroy, task %> 
-                    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
-                </tr>
-                <% @num += 1 %>
-             
-            <% end %>  
+                 <% if task.priority == "High" %>
+                    <tr class="danger">
+                  <% elsif task.priority == "Medium" %>
+                    <tr class="warning">
+                  <% elsif task.priority == "Low" %>
+                    <tr class="info">
+                  <% else %>
+                    <tr class="info">
+                  <% end %>   
+                      <td><%= @num %></td>
+                      <td><%= task.name %></td>
+                      <td><%= task.created_by_id.present? ? full_name(User.find(task.created_by_id)) : ""%></td>
+                      <td><%= task.assign_task_user_id.present? ? full_name(User.find(task.assign_task_user_id)) : ""%></td>
+                      <td><%= task.project.present? ? task.project.name : ""%></td>
+                      <% if can? :read, task %> 
+                        <td><%= link_to 'Show', task %></td>
+                      <% end %>
+                      <% if can? :edit, task %>
+                        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+                      <% end %>
+                      <% if can? :destroy, task %> 
+                        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <% end %>
+                    </tr>
+                  <% @num += 1 %>             
+              <% end %>
+              
+            <% end %>
           </tbody>
         </table>
       </div>

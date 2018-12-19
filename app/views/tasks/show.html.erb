@@ -1,127 +1,162 @@
 <% team_members_arr = @task.project.users.to_a %>
 
-<div class="col-lg-12">
-  <div class="panel panel-info">
-    <div class="panel-heading">
-         <strong>Name:</strong> <%= @task.name %>
+<div class="col-lg-12" style="margin: 20px 0 0 -20px;">
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color:white !important; border-bottom:none !important;">
+      <div class="col-lg-8">
+        <span style="padding: 5px;">
+          <% if @task.status == "done" %>
+            <i class="fa fa-bookmark" style="font-size: 15px;color: green;"></i>
+          <% elsif @task.status == "in progress" %>
+            <i class="fa fa-bookmark" style="font-size: 15px;color: blue;"></i>
+          <% else @task.status == "to do" %>
+            <i class="fa fa-bookmark" style="font-size: 15px;color: grey;"></i>
+          <% end %>
+        </span>
+        <%= @task.project.name.capitalize %>
+      </div>
+      <div class="col-lg-4">
+        <span class="pull-right" style="padding: 5px;">
+          <%= link_to edit_task_path(@task)  do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          <% end %>
+        </span>
+      </div>
     </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-lg-6">
-            <p>
-            <strong>Details :</strong> <br>
-            <%= @task.details %><br>
+          <div class="col-lg-8">
+            <p> 
+              <span> 
+                <h4><%= @task.name.capitalize %></h4>
+              </span>
             </p>
             <p>
-              <strong>Status:</strong> <%= @task.status %>
+              <span style="padding: 11px 7px 3px 5px;background-color: #80808057;">
+                <%= link_to @task.document.url do %>
+                  <i  class="fa fa-paperclip" aria-hidden="true" style="font-size: 25px;color: black; "></i>
+                <% end %>
+              </span>
             </p>
             <p>
-              <strong>Priority:</strong> <%= @task.priority %>
+              <span><%= @task.details.capitalize %></span>
             </p>
             <p>
-              <strong>Project name:</strong>
-              <% @task_project = Project.find(@task.project_id) %>
-              <%= link_to @task_project.name, project_path(@task_project) %>
-            </p>
-            <p>
-              <strong>Created by:</strong>
-              <% user =  User.find(@task.created_by_id)%>
-              <%= link_to full_name(user), user_path(user) %>
-            </p>
-            <p>
-              <%= link_to 'Download PDF',@task.document.url %>
-            </p>
-            <p >
-              <strong>Assing To:</strong>
-              <%= link_to full_name(User.find(@task.assign_task_user_id)), user_path %>
-              <% if can? :update, @task %>
-                <%= link_to 'Assign task', "#" ,:class=>"btn btn-xs btn-primary",:'data-toggle'=>"modal" ,:'data-target'=>"#myModal-1" %>
+              <% if @task.document.present? %>
+                <strong>Attachments</strong></br>
+                <%#= @task.document.content_type.inspect %>
+                <% if @task.document.content_type != "image/png" %>
+                  <%#= link_to 'Download PDF',@task.document.url %>
+                  <iframe src="<%= @task.document.url %>" width="100%" height="200px;"></iframe>
+                <% end %>
+                <% if @task.document.content_type == "image/png" %>
+                  <%= image_tag @task.document.url,:width => "150",:class=>"w3-round" %> 
+                <% end %>
               <% end %>
-            </p >
+            </p>
+            <p>
+              <strong>Activity</strong>
+            </p>
+            <p>
+              <% @comments.each do |comment| %>
+                <div class="panel-heading" style="padding: 0px !important;">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <span class="chat-img pull-left" style="padding: 10px;">
+                        <%= image_tag comment.user.photo.url(:small),:width => "30",:class=>"img-circle" %> 
+                      </span>
+                      <div class="chat-body clearfix">
+                        <div class="header">
+                          <strong class="primary-font"><%= full_name(comment.user) %></strong>
+                          <% if can? :update, @task %>
+                            <small class="text-muted">
+                              <%= link_to task_comment_path(@task,comment), method: :delete, data: { confirm: 'Are you sure?' }  do %>
+                                <i class="pull-right fa fa-trash" style="font-size: 15px;color: gray;"></i>
+                              <% end%>
+                            </small>
+                          <% end %>
+                          <% if can? :update, @task %>
+                            <small class="text-muted">
+                              <%= link_to edit_task_comment_path(@task,comment) do %>
+                                <i class="pull-right fa fa-edit" style="font-size: 15px;color: gray;"></i>
+                              <% end%>
+                            </small>
+                          <% end %>
+                          <small class="pull-right text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i><%= time_ago_in_words(comment.created_at) %>
+                          </small>
+                        </div>
+                        <p>
+                          <%= comment.body.capitalize %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end%>
+              <%= form_for ([@task,@comment]), :html => { :class => "form-horizontal comment" } do |form| %>
+                <% if @comment.errors.any? %>
+                  <div id="error_explanation">
+                    <ul>
+                    <% @comment.errors.full_messages.each do |message| %>
+                      <li><%= message.capitalize %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <div class="field">
+                  <%= form.text_field :body, id: :comment_body %>
+                  <%= form.submit %>
+                </div>          
+              <% end %>
+            </p>
           </div>
           
-          <div class="col-lg-6">
-            <iframe src="<%= @task.document.url %>" width="100%" height="200px;"></iframe> 
+          <div class="col-lg-4">
+            <p>
+              <strong class="status-#{@task.id}" >Status</strong> <br>
+              <%= form_with(model: @task, local: true) do |form| %>
+                <%= form.select(:status, Task::STATUS) %>              
+              <% end %>
+            </p>  
+            <p>
+            <strong>Assignee :</strong> <br>
+            <%= image_tag User.find(@task.assign_task_user_id).photo.url(:small),:width => "30",:class=>"img-circle" %> 
+            <%= full_name(User.find(@task.assign_task_user_id)) %> (<%= User.find(@task.created_by_id).email %>) <br>
+            <%#= link_to full_name(User.find(@task.assign_task_user_id)), user_path %>
+              <% if can? :update, @task %>
+                <%= link_to 'Assign task', "#" ,:class=>"btn btn-xs btn-primary",:'data-toggle'=>"modal" ,:'data-target'=>"#myModal-1" %>
+                  <% end %>
+            </p>
+            <p>
+            <strong>Reporter :</strong> <br>
+              <%= full_name(User.find(@task.created_by_id)) %> (<%= User.find(@task.created_by_id).email %>) <br>
+            </p>
+            <p>
+            <strong>Created By :</strong> <br>
+              <%= full_name(User.find(@task.created_by_id)) %> (<%= User.find(@task.created_by_id).email %>) <br>
+            </p>
+            <p>
+            <!-- <strong>Priority :</strong> <br> -->
+            <!-- <%#= @task.priority %><br> -->
+            <p>
+              <strong class="priority-#{@task.id}" >Priority</strong> <br>
+              <%= form_with(model: @task, local: true) do |form| %>
+                <%= form.select(:priority, Task::PRIORITY ) %>           
+              <% end %>
+            </p>    
+            </p>
+            <p>
+            <strong>Start Time :</strong> <br>
+              <%= @task.start_date.strftime('%F') %><br>
+            </p>
+            <p>
+            <strong>End Time :</strong> <br>
+               <%= @task.end_date.strftime('%F') %><br>
+            </p>
           </div>
         </div>
-      
 
-      <!-- <div class="row">
-        <%# @task.users.each do |user| %>
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="chat-body clearfix">
-                  <div class="row">
-                    <div class="col-lg-10">
-                      <%#= full_name(user) %>
-                    </div>
-                    <div class="col-lg-2">
-                      <%#= link_to 'remove', "#"  ,:class=>"btn btn-xs btn-primary", method: :delete, data: { confirm: 'Are you sure?' } %>
-                    </div>
-                  </div>
-                </div>
-              </div>          
-            </div>
-          </div>
-        <%# end%> 
-      </div>-->
-        
-        <h3>Comments</h3>
-        <% @comments.each do |comment| %>
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-lg-8">
-                <span class="chat-img pull-left" style="padding: 10px;">
-                  <%= image_tag comment.user.photo.url(:small),:width => "30",:class=>"img-circle" %> 
-                </span>
-                <div class="chat-body clearfix">
-                  <div class="header">
-                    <strong class="primary-font"><%= full_name(comment.user) %></strong>
-                    <small class="pull-right text-muted">
-                      <i class="fa fa-clock-o fa-fw"></i><%= time_ago_in_words(comment.created_at) %>
-                    </small>
-                  </div>
-                  <p>
-                    <%= comment.body %>
-                  </p>
-                </div>
-              </div>
-              <div class="col-lg-8">
-                <div class="chat-body clearfix">
-                  <div class="header">
-                    <% if can? :update, @task %>
-                      <small class="pull-right text-muted col-lg-1">
-                        <%= link_to 'Edit', edit_task_comment_path(@task,comment) %>
-                      </small>
-                    <% end %>
-                    <% if can? :destroy, @task %>
-                      <small class="pull-right text-muted col-lg-1">
-                        <%= link_to 'Destroy', task_comment_path(@task,comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-                      </small>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end%>
-
-        <%= form_for ([@task,@comment]), :html => { :class => "form-horizontal comment" } do |form| %>
-          <% if @comment.errors.any? %>
-            <div id="error_explanation">
-              <ul>
-              <% @comment.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="field">
-            <%= form.text_field :body, id: :comment_body %>
-            <%= form.submit %>
-          </div>          
-        <% end %>
       </div>
       <div class="modal fade" id="myModal-1" role="dialog">
         <div class="modal-dialog modal-md">
@@ -179,3 +214,51 @@
 <%#= link_to 'Edit', edit_task_path(@task) %> |
 <%#= link_to 'Back', tasks_path %>
  -->
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $("[name='task[status]']").change(function(){
+    var status = $("[name='task[status]'] option:selected").val();
+    console.log(status);
+    var task_id = $(this).parents('form').attr('action').split('/')[2]
+    console.log(task_id);  console.log(status);
+     $.ajax({
+        url:'/tasks/'+ task_id  + '/update_status',
+        type:'POST',
+        dataType:'json',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data:{
+            status: status
+        },
+        success:function(data){
+            console.log(data);
+        },
+        error:function(data){
+            console.log(data);
+        }
+    });
+  });
+  $("[name='task[priority]']").change(function(){
+    var priority = $("[name='task[priority]'] option:selected").val();
+    console.log(priority);
+    var task_id = $(this).parents('form').attr('action').split('/')[2]
+    console.log(task_id);  console.log(priority);
+     $.ajax({
+        url:'/tasks/'+ task_id  + '/update_status',
+        type:'POST',
+        dataType:'json',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data:{
+            priority: priority
+        },
+        success:function(data){
+            console.log(data);
+        },
+        error:function(data){
+            console.log(data);
+        } 
+    });
+  });
+});
+
+</script> 

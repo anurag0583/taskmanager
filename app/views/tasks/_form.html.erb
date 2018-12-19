@@ -40,14 +40,24 @@
                 <%= form.label :project %><br />
                 <% @projects =  current_user.projects %>
                 <%#= form.select :project, @projects.collect {|c| [ c.name, c.id ] } %>
-                <%=  form.select :project_id, @projects.map{|c| [c.name, c.id]}, :selected => params[:project_id], :prompt => "Select One" %>
+                <%= form.select :project_id, @projects.map{|c| [c.name, c.id]}, :selected => params[:project_id], :prompt => "Select One" %>
               </div>
 
               <div class="form-group">
                 <%= form.label :document %><br />
                 <%= form.file_field :document, class: "form-control" %>
               </div>
-
+              <div class="form-group">
+                <%= form.label :start_date %><br />
+                <%= form.date_field :start_date, class: "form-control",placeholder: "Enter task start date here" %>
+              </div> 
+              <div class="form-group">
+                <%= form.label :end_date %><br />
+                <%= form.date_field :end_date, class: "form-control",placeholder: "Enter task end date here" %>
+              </div>
+              <div class="form-group">
+                <%= form.hidden_field :created_by, :value => current_user.role %>
+              </div>
               <div class="col-md-offset-3 col-md-6">
                 <%= form.submit "Save",:class=>"btn btn-lg btn-success btn-block" %>
               </div>

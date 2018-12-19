@@ -42,7 +42,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-   gem "rails-erd"
+  gem "rails-erd"
+
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
@@ -73,3 +75,5 @@ gem 'chart'
 
 gem 'sinatra', require: false
 gem 'slim'
+gem "gritter", "1.2.0"
+gem 'stripe'

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # match "/404", :to => "errors#not_found", :via => :all
+  # match "/500", :to => "errors#internal_server_error", :via => :all
+
+  resources :tests
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
     member do
       get :assign_task
       get :dis_assign_task
+      post :update_status
     end
     resources :comments
   end
@@ -39,6 +44,7 @@ Rails.application.routes.draw do
   end
 
   root to: "home#index"
+  get "home/index_client"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

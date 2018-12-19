@@ -4,11 +4,11 @@ class Task < ApplicationRecord
 	belongs_to :project
 
 	has_attached_file :document
-	validates_attachment :document, presence: true,
+	validates_attachment :document,
     content_type: { content_type: ["application/pdf", "application/doc", "application/docx",
     "image/jpeg", "image/gif", "image/png", "image/jpg", "image/bmp"] },
     size: { in: 1..5000.kilobytes }
 
-	STATUS = ["to do","in progress","ready for testing","done"]
+	STATUS = ["todo","inprogress","done"]
 	PRIORITY = ["High", "Medium", "Low"]
 end

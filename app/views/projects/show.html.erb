@@ -18,11 +18,11 @@
         </div>
         <div class="col-lg-12">
           <strong>Name:</strong>
-          <p><%= @project.name %></p>
+          <p><%= @project.name.capitalize %></p>
         </div>
         <div class="col-lg-12">
           <strong>Description:</strong>
-          <p><%= @project.description %></p>
+          <p><%= @project.description.capitalize %></p>
         </div>
         <div>
         <div class="col-lg-12">
@@ -75,14 +75,18 @@
             <% end %>
           </div>
           <% @project.tasks.each do |task| %>
-            <p class="col-lg-6">
-              <%= link_to task.name, task_path(task) %>
-            </p>
-            <p class="col-lg-2 col-lg-offset-4 ">
-              <% if can? :update, @project %> 
+            <% if can? :update, @project %> 
+              <p class="col-lg-6">
+                <%= link_to task.name.capitalize, task_path(task) %>
+              </p>
+              <p class="col-lg-2 col-lg-offset-4 ">
                 <%= link_to 'Remove task', project_task_path(@project,task)  ,:class=>"btn btn-xs btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
-            </p>
+              </p>
+            <% else %>
+              <p class="col-lg-12">
+                <%= link_to task.name.capitalize, task_path(task) %>
+              </p>
+            <% end %>
           <% end %>
         </div>
       </div>

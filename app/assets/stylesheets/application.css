@@ -17,5 +17,6 @@
 *= require morris
 *= require sb-admin-2
 *= require font-awesome
+*= require gritter
 *= require nvd3
 */

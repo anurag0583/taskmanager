@@ -5,13 +5,26 @@ class Ability
     if user.role == "admin"
       can :manage, :all
     elsif user.role == "manager"
-      can :read, :all
-      can :update, :all
-      can :create, :all
-      can :create, Project
+      can :manage, :all
+      # can :read, :all
+      # can :update, :all
+      # can :create, :all
+      # can :create, Project
+      # can :assign_task, Task
+      # can :update_status, Task
+      # can :add_user, Project      
+    elsif user.role == "client"
+      can :manage, :all
+      # can :read, :all
+      # can :update, :all
+      # can :create, :all
+      # can :create, Project
+      # can :assign_task, Task
+      # can :update_status, Task
     else
       can :read, :all
       can :manage, Comment
+      can :update_status, Task
       # can :update, Comment do |comment|
       #   comment.try(:user) == user
       # end

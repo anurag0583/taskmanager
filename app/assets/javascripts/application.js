@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require chart
 //= require turbolinks
+//= require gritter
 //= require_tree .

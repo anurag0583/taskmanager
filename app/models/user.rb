@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :comments
   # belongs_to :role
   
-  ROLES = %w[admin manager employee].freeze
+  ROLES = %w[admin manager employee client].freeze
   # ROLE = ["Admin","Manager","Employee"]
 
   after_create :set_user_project

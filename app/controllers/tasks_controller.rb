@@ -9,12 +9,13 @@ class TasksController < ApplicationController
       @tasks = @current_user_tasks.where('name LIKE ?', "%#{params[:search]}%")
       @task_count = @tasks.count
     else
-      @tasks = Task.all.where(:assign_task_user_id => current_user.id)
+      @tasks = Task.all.where(:assign_task_user_id => current_user.id).order(created_at: :desc)
+      
       @task_count = @tasks.count
     end
     # @tasks = Task.all
   end
-
+ 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
@@ -44,7 +45,7 @@ class TasksController < ApplicationController
       @project = Project.find(params[:task][:project_id])
       @project.tasks << @task
       @user.tasks << @task
-    else
+    else 
       @project = Project.where(:created_by_id => current_user.id,:name=>"persnal_project")[0]
       @project.tasks << @task
       @user.tasks << @task
@@ -85,12 +86,30 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_status
+    if params[:status].present?
+      @task.status = params[:status]
+    elsif params[:priority].present?
+      @task.priority = params[:priority]
+    end
+
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to @task, notice: 'Task status updated.' }
+        format.json { render :show, status: :ok, location: @task }
+      else
+        format.html { render :edit }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
     # if params[:task_id]
     #   @task = Task.find(params[:task_id])
-    #   @task.destroy
+    #   @task.destroy                           
     # else
       @task = Task.find(params[:id])
       @task.destroy
@@ -104,15 +123,10 @@ class TasksController < ApplicationController
   def assign_task
     @user = User.find(params[:user_id])
     @task = Task.find(params[:id])
-   
     @task.update_attributes(assign_task_user_id: @user.id)
-    
-    # @user.tasks << @task
-    
-    @project = @task.project
-    
+    # @user.tasks << @task    
+    @project = @task.project    
     @admin = current_user
-
     # @user.tasks
     # if @user.tasks.empty?
     #   @user.tasks << @task 
@@ -149,6 +163,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name,:details,:status,:priority,:document,:created_by_id,:project_id,:assign_task_user_id)
+      params.require(:task).permit(:name,:details,:status,:priority,:document,:created_by,:created_by_id,:project_id,:assign_task_user_id,:start_date, :end_date)
     end
 end

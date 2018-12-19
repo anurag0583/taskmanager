@@ -14,6 +14,10 @@ class ProjectsController < ApplicationController
       elsif params[:key] == "shared"
         @user = current_user
         @projects = @user.projects.where("created_by_id != ? ",current_user.id )
+         # @projects = @user.projects.where("created_by_id = ? ", current_user.id).where("created_by != ? " ,"client")
+      elsif params[:key] == "client"
+        @user = current_user
+        @projects = @user.projects.where(:created_by =>"client" )
       else
         @projects = Project.where("created_by_id = ? ",current_user.id )
       end
@@ -43,10 +47,10 @@ class ProjectsController < ApplicationController
   def create
     @user = current_user
     @project = Project.new(project_params)
-    @user.projects << @project
     @users = User.where(id: params[:project][:user_ids])
     respond_to do |format|
       if @project.save
+        @user.projects << @project
         @project.update_attributes(created_by_id: current_user.id)
         @admin = User.find(@project.created_by_id)
         @users.each do |u|
@@ -58,6 +62,7 @@ class ProjectsController < ApplicationController
             end
           end
         end
+        
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -100,19 +105,24 @@ class ProjectsController < ApplicationController
         @project.users << @user
       else
         @project_user_ids = @project.users.pluck(:id)
-        if !@project_user_ids.include? @user.id
-          @project.users << @user
+        if params[:email] != current_user.email
+          if !@project_user_ids.include? @user.id
+            @project.users << @user
+          end
+          if current_user.is_turn_on == true
+            ProjectMailer.add_user_in_project(@user,@admin,@project).deliver_now
+          end
+          respond_to do |format|
+            format.html { redirect_to @project, notice: 'project member added successfully.' }
+            format.json { head :no_content }
+          end
+        else
+          flash[:notice] = "User is already a member of this Team."
+          render 'show'
         end
       end
 
-      if current_user.is_turn_on == true
-        ProjectMailer.add_user_in_project(@user,@admin,@project).deliver_now
-      end
 
-      respond_to do |format|
-        format.html { redirect_to @project, notice: 'project member added successfully.' }
-        format.json { head :no_content }
-      end
     else
       respond_to do |format|
         format.html { redirect_to @project, notice: 'No user exist.' }
@@ -144,6 +154,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name,:description,:created_by_id,:manager_id)
+      params.require(:project).permit(:name,:description,:created_by_id,:manager_id,:created_by,:user_ids)
     end
 end
