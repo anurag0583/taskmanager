@@ -1,5 +1,5 @@
 SMTP_ADDRESS: 'smtp.mailgun.org'
 SMTP_PORT: 587
 DOMAIN_NAME: 'http://localhost:3000/'
-SMTP_USERNAME: 'pooja-inuscg'
-SMTP_PASSWORD: 'data12care'
+SMTP_USERNAME: 'pooja-inus'
+SMTP_PASSWORD: 'D@ata12care'
