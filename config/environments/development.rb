@@ -63,7 +63,7 @@ Rails.application.configure do
  
   ActionMailer::Base.smtp_settings = {
     :user_name => 'Milindsik',
-    :password => 'P@assw0rd',
+    :password => 'D@ata12care',
     :domain => 'localhost:3000',
     :address => 'smtp.sendgrid.net',
     :port => 587,

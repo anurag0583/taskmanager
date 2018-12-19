@@ -2,4 +2,4 @@ SMTP_ADDRESS: 'smtp.mailgun.org'
 SMTP_PORT: 587
 DOMAIN_NAME: 'https://task-manager-inuscg.herokuapp.com'
 SMTP_USERNAME: 'Milindsik'
-SMTP_PASSWORD: 'P@assw0rd'
+SMTP_PASSWORD: 'D@ata12care'
