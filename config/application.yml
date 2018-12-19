@@ -1,5 +1,5 @@
 SMTP_ADDRESS: 'smtp.mailgun.org'
 SMTP_PORT: 587
-DOMAIN_NAME: 'http://localhost:3000/'
+DOMAIN_NAME: 'https://task-manager-inuscg.herokuapp.com'
 SMTP_USERNAME: 'Milindsik'
 SMTP_PASSWORD: 'P@assw0rd'
