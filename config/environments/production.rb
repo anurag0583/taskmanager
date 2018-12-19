@@ -90,7 +90,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_mailer.asset_host = "task-manager-inuscg.herokuapp.com"
+  config.action_mailer.asset_host = "https://task-manager-inuscg.herokuapp.com"
   # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = {
     host: 'task-manager-inuscg.herokuapp.com'
@@ -107,8 +107,8 @@ Rails.application.configure do
   # }
  
   ActionMailer::Base.smtp_settings = {
-    :user_name => 'pooja-inuscg',
-    :password => 'data12care',
+    :user_name => 'Milindsik',
+    :password => 'P@assw0rd',
     :domain => 'herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
@@ -116,4 +116,3 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 end
-
