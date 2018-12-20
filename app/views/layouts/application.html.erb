@@ -6,7 +6,21 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
-    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+    
+    <link href="/assets/bootstrap.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/assets/metisMenu.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/assets/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="/assets/images/font-awesome.css" rel="stylesheet" type="text/css"> -->
+
     <style>
       *{
         box-sizing: border-box;
@@ -84,10 +98,24 @@
         </div>
       <% end %>
     </div>
-    <div id="stripe_error">
-      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-    </div>
-    
+   
+       <!-- jQuery -->
+    <script src="/assets/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/bootstrap.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/assets/metisMenu.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/assets/raphael.js"></script>
+    <script src="/assets/morris.min.js"></script>
+    <!-- <script src="/assets/morris-data.js"></script> -->
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/assets/sb-admin-2.js"></script>
+
     <script type="text/javascript">
       $(function() {
         setTimeout(function() {
