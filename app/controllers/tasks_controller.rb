@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update]
   load_and_authorize_resource
   # GET /tasks
@@ -25,7 +26,7 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/new
-  def new
+  def new 
     @task = Task.new
   end
 
